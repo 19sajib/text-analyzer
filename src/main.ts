@@ -24,6 +24,6 @@ async function bootstrap() {
   const logger = new Logger('Startup');
   setupSwagger(app);
   await app.listen(port);
-  logger.log(`App Started on http://localhost:4949/api`);
+  logger.log(`App Started on http://localhost:${port}/api`);
 }
 bootstrap();
