@@ -12,25 +12,29 @@ export class AnalyzerController {
     @UseGuards(JwtAuthGuard)
     @Post('/word-count')
     async wordCounts(@Body('text') text: string){
-       return await this.analyzerService.wordCounts(text)
+       const wordCount = await this.analyzerService.wordCounts(text)
+       return { wordCount }
     }
 
     @UseGuards(JwtAuthGuard)
     @Post('/character-count')
     async characterCounts(@Body('text') text: string){
-       return await this.analyzerService.characterCounts(text)
+       const characterCount = await this.analyzerService.characterCounts(text)
+       return { characterCount }
     }
 
     @UseGuards(JwtAuthGuard)
     @Post('/sentence-count')
     async sentenceCounts(@Body('text') text: string){
-       return await this.analyzerService.sentenceCounts(text)
+       const sentenceCount = await this.analyzerService.sentenceCounts(text)
+       return { sentenceCount }
     }
 
     @UseGuards(JwtAuthGuard)
     @Post('/paragraph-count')
     async paragraphCounts(@Body('text') text: string){
-       return await this.analyzerService.paragraphCounts(text)
+       const paragraphCount = await this.analyzerService.paragraphCounts(text)
+       return { paragraphCount }
     }
 
     @UseGuards(JwtAuthGuard)

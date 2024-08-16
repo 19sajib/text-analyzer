@@ -1,6 +1,6 @@
 import { Module } from '@nestjs/common';
 import { UiController } from './ui.controller';
-import { AnalyzerService } from 'src/analyzer/analyzer.service';
+import { AnalyzerService } from '../analyzer/analyzer.service';
 
 @Module({
     imports: [],

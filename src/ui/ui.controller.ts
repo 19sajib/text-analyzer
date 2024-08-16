@@ -1,6 +1,6 @@
 import { Controller, Get, Render, Post, Body, UseGuards, Res } from '@nestjs/common';
-import { AnalyzerService } from 'src/analyzer/analyzer.service';
-import { JwtAuthGuard } from 'src/auth/jwt/jwt-auth.guard';
+import { AnalyzerService } from '../analyzer/analyzer.service';
+import { JwtAuthGuard } from '../auth/jwt/jwt-auth.guard';
 import { ApiTags } from '@nestjs/swagger';
 
 @ApiTags('Ui Controller')

@@ -41,4 +41,12 @@ export class AuthService {
         access_token: this.jwtService.sign(payload),
         };
     }
+
+    async deleteUser(username: string): Promise<{ success: boolean }> {
+        const result = await this.userModel.deleteOne({ username });
+        if (result.deletedCount === 0) {
+            throw new HttpException('User not found', HttpStatus.NOT_FOUND);
+        }
+        return { success: true };
+    }
 }

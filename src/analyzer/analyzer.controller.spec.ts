@@ -48,44 +48,52 @@ describe('AnalyzerController', () => {
 
   describe('wordCounts', () => {
     it('should return the correct word count', async () => {
-      const mockResult = 5;
+      const mockResult = {
+        wordCount: 5
+      };
       mockAnalyzerService.wordCounts.mockResolvedValue(mockResult);
 
       const result = await analyzerController.wordCounts('This is a test sentence.');
-      expect(result).toBe(mockResult);
+      expect(result.wordCount).toEqual(mockResult);
       expect(mockAnalyzerService.wordCounts).toHaveBeenCalledWith('This is a test sentence.');
     });
   });
 
   describe('characterCounts', () => {
     it('should return the correct character count', async () => {
-      const mockResult = 24;
+      const mockResult = {
+        characterCount: 24
+      };
       mockAnalyzerService.characterCounts.mockResolvedValue(mockResult);
 
       const result = await analyzerController.characterCounts('This is a test sentence.');
-      expect(result).toBe(mockResult);
+      expect(result.characterCount).toEqual(mockResult);
       expect(mockAnalyzerService.characterCounts).toHaveBeenCalledWith('This is a test sentence.');
     });
   });
 
   describe('sentenceCounts', () => {
     it('should return the correct sentence count', async () => {
-      const mockResult = 2;
+      const mockResult = {
+        sentenceCount: 2
+      };
       mockAnalyzerService.sentenceCounts.mockResolvedValue(mockResult);
 
       const result = await analyzerController.sentenceCounts('This is the first sentence. And this is the second!');
-      expect(result).toBe(mockResult);
+      expect(result.sentenceCount).toEqual(mockResult);
       expect(mockAnalyzerService.sentenceCounts).toHaveBeenCalledWith('This is the first sentence. And this is the second!');
     });
   });
 
   describe('paragraphCounts', () => {
     it('should return the correct paragraph count', async () => {
-      const mockResult = 2;
+      const mockResult = {
+        paragraphCount: 2
+      };
       mockAnalyzerService.paragraphCounts.mockResolvedValue(mockResult);
 
       const result = await analyzerController.paragraphCounts('This is the first paragraph.\n\nThis is the second paragraph.');
-      expect(result).toBe(mockResult);
+      expect(result.paragraphCount).toEqual(mockResult);
       expect(mockAnalyzerService.paragraphCounts).toHaveBeenCalledWith('This is the first paragraph.\n\nThis is the second paragraph.');
     });
   });
