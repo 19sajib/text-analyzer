@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Register</title>
+</head>
+<body>
+  <%- include('partials/header') %>
+  
+  <h1>Register</h1>
+  <form id="registerForm">
+    <label for="username">Username:</label><br>
+    <input type="text" id="username" name="username"><br>
+    <label for="password">Password:</label><br>
+    <input type="password" id="password" name="password"><br><br>
+    <input type="submit" value="Register">
+  </form>
+
+  <script>
+    document.getElementById('registerForm').onsubmit = async function(event) {
+      event.preventDefault();
+      
+      const response = await fetch('/api/auth/register', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          username: document.getElementById('username').value,
+          password: document.getElementById('password').value
+        })
+      });
+
+      const result = await response.json();
+      if (response.ok) {
+        localStorage.setItem('token', result.token.access_token); // Store the token in localStorage
+        alert('Register successful!');
+        window.location.href = '/api/ui/'; // Redirect to home page after login
+      } else {
+        alert(result.message || 'Registration failed');
+      }
+    }
+  </script>
+</body>
+</html>

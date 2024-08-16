@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Analysis Result</title>
+</head>
+<body>
+  <%- include('partials/header') %>
+  
+  <h1>Analysis Results</h1>
+  <p><strong>Text:</strong> <%= text %></p>
+  <p><strong>Word Count:</strong> <%= wordCount %></p>
+  <p><strong>Character Count:</strong> <%= charCount %></p>
+  <p><strong>Sentence Count:</strong> <%= sentenceCount %></p>
+  <p><strong>Paragraph Count:</strong> <%= paragraphCount %></p>
+  <p><strong>Longest Words:</strong> <%= longestWords %></p>
+  <a href="/api/ui/">Analyze Another Text</a>
+</body>
+</html>

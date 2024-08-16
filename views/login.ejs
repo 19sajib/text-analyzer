@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Login</title>
+</head>
+<body>
+  <%- include('partials/header') %>
+  
+  <h1>Login</h1>
+  <form id="loginForm">
+    <label for="username">Username:</label><br>
+    <input type="text" id="username" name="username"><br>
+    <label for="password">Password:</label><br>
+    <input type="password" id="password" name="password"><br><br>
+    <input type="submit" value="Login">
+  </form>
+
+  <script>
+    document.getElementById('loginForm').onsubmit = async function(event) {
+      event.preventDefault();
+      
+      const response = await fetch('/api/auth/login', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          username: document.getElementById('username').value,
+          password: document.getElementById('password').value
+        })
+      });
+
+      const result = await response.json();
+      if (response.ok) {
+        localStorage.setItem('token', result.token.access_token); // Store the token in localStorage
+        alert('Login successful!');
+        window.location.href = '/api/ui/'; // Redirect to home page after login
+      } else {
+        alert(result.message || 'Login failed');
+      }
+    }
+  </script>
+</body>
+</html>
