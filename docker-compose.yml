@@ -1,0 +1,38 @@
+version: '3.7'
+
+services:
+  # MongoDB Service
+  mongodb:
+    image: mongo:latest
+    container_name: mongodb
+    restart: always
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo-data:/data/db
+
+  # NestJS Application Service
+  app:
+    build: .
+    container_name: text-analyzer
+    restart: always
+    ports:
+      - "3000:3000"
+    depends_on:
+      - mongodb
+    environment:
+      MONGO_URI: mongodb://mongodb:27017/text-analyzer
+      JWT_SECRET_KEY: ThisIsARandomString8VDLryQzEMxXmQu
+      JWT_EXPIRE_LIMIT: '7d'
+      NODE_ENV: production
+    networks:
+      - app-network
+
+# Volumes to persist MongoDB data
+volumes:
+  mongo-data:
+
+# Define a network to allow containers to communicate
+networks:
+  app-network:
+    driver: bridge

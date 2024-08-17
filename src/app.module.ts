@@ -14,7 +14,10 @@ import { ThrottlerModule } from '@nestjs/throttler';
       ttl: 60000,  // time to live in seconds
       limit: 10 // max number of requests within the ttl
     }]),
-    TypegooseModule.forRoot(config.mongoURI),
+    TypegooseModule.forRoot(config.mongoURI, {
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
+    }),
     AnalyzerModule,
     AuthModule,
     UiModule
